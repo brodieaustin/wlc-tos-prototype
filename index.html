@@ -52,6 +52,9 @@
     .tos-nav-item{
       margin-bottom: 10px;
     }
+    input[type=checkbox].understands-check{
+      margin-right: 8px;
+    }
     .understands:before{
       content: '\2714'; /*heavy checkmark*/
       display: inline-block;
@@ -108,13 +111,7 @@
             <p>The Wikipedia Library is an open research hub, through which active Wikipedia editors can gain both access to the vital reliable sources needed for their work and support in using those resources to improve the encyclopedia. We have partnered with publishers around the world to allow users to freely access otherwise paywalled resources. This platform allows users to apply simultaneously for access to multiple publishers, and makes the administration of Wikipedia Library accounts easy and efficient.</p>
             <p>These terms pertain to your application for access to Wikipedia Library resources, and your use of those resources. They also describe our handling of the information you provide to us in order to create and administer your Wikipedia Library account. The Wikipedia Library system is evolving, and over time we may update these terms due to changes in the technology. We recommend that you review the terms from time to time. If we make substantial changes to the terms, we will send a notification email to Wikipedia Library users.</p>
             <div class="form-control">
-              <label>
-                Do you understand?
-                <select class="understands-prompt" data-understands="intro">
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-              </label>
+              <label><input type="checkbox" class="understands-check" data-understands="intro">I understand</label>
             </div>
           </section>
           <section class="tos-section requirements" id="requirements">
@@ -124,12 +121,8 @@
             <p>Wikipedia Library Card accounts do not expire. However, access to an individual publisher’s resources will generally lapse after one year, after which you will either need to apply for renewal or your account will automatically be renewed.</p>
             <div class="form-control">
               <label>
-                Do you understand?
-                <select class="understands-prompt" data-understands="requirements">
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-              </label>
+
+                <input type="checkbox" class="understands-check" data-understands="requirements">I understand</label>
             </div>
           </section>
           <section class="tos-section applying" id="applying">
@@ -141,12 +134,8 @@
             <p>We will ask you to identify your home wiki (or any Wikipedia version where you have enabled email), and finally to provide us with some information about your history of contributions to the Wikimedia projects. Information on contribution history is optional, but will greatly assist us in evaluating your application.</p>
             <div class="form-control">
               <label>
-                Do you understand?
-                <select class="understands-prompt" data-understands="applying">
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-              </label>
+
+                <input type="checkbox" class="understands-check" data-understands="applying">I understand</label>
             </div>
           </section>
           <section class="tos-section" id="data-retention">
@@ -158,12 +147,8 @@
             <p>Please note that these terms do not control the use and handling of your data by the publishers whose resources you access. Please read their individual privacy policies for that information.</p>
             <div class="form-control">
               <label>
-                Do you understand?
-                <select class="understands-prompt" data-understands="data-retention">
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-              </label>
+
+                <input type="checkbox" class="understands-check" data-understands="data-retention">I understand</label>
             </div>
           </section>
           <section class="tos-section" id="publisher-resources">
@@ -173,13 +158,7 @@
             <p>You must agree not to share your usernames and passwords for access to publisher resources with others.</p>
             <p>Your access to publisher resources does not allow you to mass scrape or mass download restricted content from publishers; to systematically make printed or electronic copies of multiple extracts of restricted content available for any purpose; to data mine metadata without permission, in order to use metadata for auto-created stub articles, for example; or to use the access you receive through the Wikipedia Library for profit by selling access to your account or resources to which you have through it.</p>
             <div class="form-control">
-              <label>
-                Do you understand?
-                <select class="understands-prompt" data-understands="publisher-resources">
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-              </label>
+              <label><input type="checkbox" class="understands-check" data-understands="publisher-resources">I understand</label>
             </div>
           </section>
           <section class="tos-section" id="important-note">
@@ -191,13 +170,7 @@
             Please note that in the event of any differences in meaning or interpretation between the original English version of these terms and a translation, the original English version takes precedence.
             </strong></p>
             <div class="form-control">
-              <label>
-                Do you understand?
-                <select class="understands-prompt" data-understands="important-note">
-                  <option>No</option>
-                  <option>Yes</option>
-                </select>
-              </label>
+              <label><input type="checkbox" class="understands-check" data-understands="important-note">I understand</label>
             </div>
           </section>
           <p>Thank you!</p>
@@ -215,10 +188,10 @@
           $('.tos-nav').stickUp();
 
           //toggle a checkmark next to each section of the TOS
-          $('.understands-prompt').change(function(){
+          $('.understands-check').change(function(){
             var understandsSection = $(this).data('understands');
-            var understandsValue = $(this).val();
-            if (understandsValue == 'Yes'){
+            var understandsChecked = $(this).prop('checked');
+            if (understandsChecked == true){
               $('a[href$="#' + understandsSection + '"]').parent().addClass('understands');
             }
             else{
